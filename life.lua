@@ -143,7 +143,7 @@ if not paused then
 nc=Evolve(c)
 for k,v in pairs(nc) do
 for ki,vi in pairs(v) do
-if !c[k][ki]==nc[k][ki] then
+if not c[k][ki]==nc[k][ki] then
 local color=colors.lime
 if nc[k][ki]==0 then
 color=colors.blue
