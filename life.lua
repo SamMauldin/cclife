@@ -114,7 +114,7 @@ end
 if not mon then
 if monitor then
 term.redirect(peripheral.wrap(monitorc))
-draw()
+draw(true)
 term.restore()
 end
 end
