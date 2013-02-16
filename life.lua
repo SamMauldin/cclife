@@ -1,3 +1,14 @@
+args={...}
+monitor=false
+monitorc=""
+if args[1]=="monitor" then
+for k,v in pairs(rs.getSides()) do
+if peripheral.getType(v)=="monitor" then
+monitorc=v
+term.redirect(peripheral.wrap(monitorc))
+end
+end
+end
 updateurl="https://raw.github.com/Sxw1212/cclife/master/life.lua"
 if not update then
 print("Updating...")
@@ -54,6 +65,7 @@ end
 clear()
 print "Welcome to Sxw's Game of Life!"
 x,y=term.getSize()
+term.restore()
 size=0
 if x > y then
 size=y-1
@@ -69,7 +81,7 @@ for j=1, size do
 c[i][j]=0
 end
 end
-function draw()
+function draw(mon)
 clear()
 for ck,cv in pairs(c) do
 for k,v in pairs(cv) do
@@ -86,6 +98,11 @@ if paused then
 term.write("Paused")
 else
 term.write("Simulating...")
+end
+if not mon then
+term.redirect(peripheral.wrap(monitorc))
+draw()
+term.restore()
 end
 end
 function handleclick(p1,p2)
@@ -114,6 +131,8 @@ end
 elseif e=="mouse_click" then
 handleclick(p2,p3)
 elseif e=="mouse_drag" then
+handleclick(p2,p3)
+elseif e=="monitor_touch" then
 handleclick(p2,p3)
 elseif e=="key" then
 paused=not paused
