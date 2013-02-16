@@ -40,6 +40,9 @@ print("Using old copy...")
 sleep(1)
 end
 end
+if update then
+update=false
+end
 function Evolve( cell )
     local m = #cell
     local cell2 = {}
