@@ -1,5 +1,6 @@
-updateurl="http://pastebin.com/raw.php?i=kUTwR4Yq"
+updateurl="https://raw.github.com/Sxw1212/cclife/master/life.lua"
 if not update then
+print("Updating...")
 update=true
 x=shell.getRunningProgram()
 upd=http.get(updateurl)
@@ -9,12 +10,15 @@ updfh=fs.open(x, "w")
 updfh.write(upd.readAll())
 updfh.close()
 upd.close()
+print("Update Completed")
+sleep(1)
 shell.run(x)
 return
 else
-print("Update failed!")
+print("Update failed")
+print("Using old copy...")
+sleep(1)
 end
-shell.run(x)
 end
 function Evolve( cell )
     local m = #cell
@@ -74,7 +78,7 @@ paintutils.drawPixel(ck,k, colors.blue)
 else
 paintutils.drawPixel(ck,k, colors.lime)
 end
-term.setBackgroundColor(colors.orange)
+term.setBackgroundColor(colors.gray)
 end
 print("")
 end
