@@ -112,9 +112,11 @@ else
 term.write("Simulating...")
 end
 if not mon then
+if monitor then
 term.redirect(peripheral.wrap(monitorc))
 draw()
 term.restore()
+end
 end
 end
 function handleclick(p1,p2)
