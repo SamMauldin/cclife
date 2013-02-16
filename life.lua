@@ -6,11 +6,11 @@ print("Monitor support beta activated!!!")
 for k,v in pairs(rs.getSides()) do
 if peripheral.getType(v)=="monitor" then
 print("Monitor found...")
+monitor=true
 monitorc=v
 term.redirect(peripheral.wrap(monitorc))
 end
 end
-sleep(5)
 end
 updateurl="https://raw.github.com/Sxw1212/cclife/master/life.lua"
 if not update then
@@ -26,7 +26,13 @@ updfh.close()
 upd.close()
 print("Update Completed")
 sleep(1)
+if monitor then
+print("Running with monitor support")
+sleep(1)
+shell.run(x, "monitor")
+else
 shell.run(x)
+end
 return
 else
 print("Update failed")
