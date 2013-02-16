@@ -140,26 +140,8 @@ e,p1,p2,p3,p4,p5=os.pullEvent()
 if e=="timer" then
 os.startTimer(interval)
 if not paused then
-nc=Evolve(c)
-for k,v in pairs(nc) do
-for ki,vi in pairs(v) do
-if not c[k][ki]==nc[k][ki] then
-local color=colors.lime
-if nc[k][ki]==0 then
-color=colors.blue
-end
-if monitor then
-term.redirect(peripheral.wrap(monitorc))
-paintutils.drawPixel(k,ki, color)
-term.setBackgroundColor(colors.gray)
-term.restore()
-end
-paintutils.drawPixel(k,ki, color)
-term.setBackgroundColor(colors.gray)
-end
-end
-end
-c=nc
+c=Evolve(c)
+draw()
 end
 elseif e=="mouse_click" then
 handleclick(p2,p3)
