@@ -2,12 +2,15 @@ args={...}
 monitor=false
 monitorc=""
 if args[1]=="monitor" then
+print("Monitor support beta activated!!!")
 for k,v in pairs(rs.getSides()) do
 if peripheral.getType(v)=="monitor" then
+print("Monitor found...")
 monitorc=v
 term.redirect(peripheral.wrap(monitorc))
 end
 end
+sleep(5)
 end
 updateurl="https://raw.github.com/Sxw1212/cclife/master/life.lua"
 if not update then
