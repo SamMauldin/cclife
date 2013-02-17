@@ -8,7 +8,6 @@ if peripheral.getType(v)=="monitor" then
 print("Monitor found...")
 monitor=true
 monitorc=v
-term.redirect(peripheral.wrap(monitorc))
 end
 end
 end
@@ -29,7 +28,7 @@ sleep(1)
 if monitor then
 print("Running with monitor support")
 sleep(1)
-shell.run(x, "monitor")
+shell.run("monitor", monitorc, x)
 else
 shell.run(x)
 end
@@ -44,29 +43,47 @@ if update then
 update=false
 end
 function Evolve( cell )
-    local m = #cell
-    local cell2 = {}
-    for i = 1, m do
-        cell2[i] = {}
-        for j = 1, m do
-            cell2[i][j] = cell[i][j]
-        end
-    end
- 
-    for i = 1, m do
-        for j = 1, m do
-            local count
-            if cell2[i][j] == 0 then count = 0 else count = -1 end
-            for x = -1, 1 do
-                for y = -1, 1 do
-                    if i+x >= 1 and i+x <= m and j+y >= 1 and j+y <= m and cell2[i+x][j+y] == 1 then count = count + 1 end
-                end
-            end
-            if count < 2 or count > 3 then cell[i][j] = 0 end
-            if count == 3 then cell[i][j] = 1 end
-        end
-    end
- 
+	local newcell={}
+	local actions={}
+	local width=#cell
+	local height=#cell[1]
+	for x,xv in pairs(cell) do
+		newcell[x]={}
+		for y,yv in pairs(xv) do
+			local s=0
+			--Get surrounding
+			--x+1
+			if x==width then
+			s=s+cell[1][y]
+			else
+			s=s+cell[x+1][y]
+			end
+			--x-1
+			if x==1 then
+			s=s+cell[width][y]
+			else
+			s=s+cell[x-1][y]
+			end
+			--y+1
+			if x==height then
+			s=s+cell[x][1]
+			else
+			s=s+cell[x][y+1]
+			end
+			--y-1
+			if y==1 then
+			s=s+cell[x][height]
+			else
+			s=s+cell[x][y-1]
+			end
+			--Decide its fate...
+			if s==3 or s==2 then
+			newcell[x][y]=1
+			elseif s==4 or s==0 then
+			newcell[x][y]=0
+			end
+		end
+	end
     return cell
 end
 
@@ -77,19 +94,11 @@ end
 clear()
 print "Welcome to Sxw's Game of Life!"
 x,y=term.getSize()
-term.restore()
-size=0
-if x > y then
-size=y-1
-elseif x < y then
-size=x
-else
-size=x-1
-end
+
 c={}
-for i=1,size do
+for i=1,x do
 c[i]={}
-for j=1, size do
+for j=1, y-1 do
 c[i][j]=0
 end
 end
@@ -110,13 +119,6 @@ if paused then
 term.write("Paused")
 else
 term.write("Simulating...")
-end
-if not mon then
-if monitor then
-term.redirect(peripheral.wrap(monitorc))
-draw(true)
-term.restore()
-end
 end
 end
 function handleclick(p1,p2)
@@ -147,9 +149,6 @@ elseif e=="mouse_click" then
 handleclick(p2,p3)
 draw()
 elseif e=="mouse_drag" then
-handleclick(p2,p3)
-draw()
-elseif e=="monitor_touch" then
 handleclick(p2,p3)
 draw()
 elseif e=="key" then
