@@ -46,7 +46,8 @@ function getStat(cell, x, y)
 w,h=term.getSize()
 h=h-1
 
-fx, fy=0
+fx=0
+fy=0
 
 if x==0 then
 fx=w
