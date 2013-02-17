@@ -1,48 +1,6 @@
 debug=false
 args={...}
-monitor=false
-monitorc=""
-if args[1]=="monitor" then
-print("Monitor support beta activated!!!")
-for k,v in pairs(rs.getSides()) do
-if peripheral.getType(v)=="monitor" then
-print("Monitor found...")
-monitor=true
-monitorc=v
-end
-end
-end
-updateurl="https://raw.github.com/Sxw1212/cclife/master/life.lua"
-if not update then
-print("Updating...")
-update=true
-x=shell.getRunningProgram()
-upd=http.get(updateurl)
-if upd then
-fs.delete(x)
-updfh=fs.open(x, "w")
-updfh.write(upd.readAll())
-updfh.close()
-upd.close()
-print("Update Completed")
-sleep(5)
-if monitor then
-print("Running with monitor support")
-sleep(1)
-shell.run("monitor", monitorc, x)
-else
-shell.run(x)
-end
-return
-else
-print("Update failed")
-print("Using old copy...")
-sleep(1)
-end
-end
-if update then
-update=false
-end
+
 function log(msg)
 if debug then
 print(msg)
@@ -51,7 +9,6 @@ end
 function getStat(cell, x, y)
 w,h=term.getSize()
 h=h-1
-
 fx=0
 fy=0
 log("Starting:X:"..x.." Y:"..y)
@@ -183,6 +140,9 @@ elseif e=="mouse_click" then
 handleclick(p2,p3)
 draw()
 elseif e=="mouse_drag" then
+handleclick(p2,p3)
+draw()
+elseif e=="monitor_touch" then
 handleclick(p2,p3)
 draw()
 elseif e=="key" then
