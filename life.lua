@@ -49,16 +49,16 @@ h=h-1
 fx=0
 fy=0
 
-if x==0 then
+if x<1 then
 fx=w
 end
-if y==0 then
+if y<1 then
 fy=h
 end
-if y==h then
+if y>h then
 fy=1
 end
-if x==w then
+if x>w then
 fx=1
 end
 if fx==0 then
