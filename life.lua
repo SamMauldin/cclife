@@ -25,7 +25,7 @@ updfh.write(upd.readAll())
 updfh.close()
 upd.close()
 print("Update Completed")
-sleep(3)
+sleep(5)
 if monitor then
 print("Running with monitor support")
 sleep(1)
