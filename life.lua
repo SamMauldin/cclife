@@ -66,6 +66,9 @@ end
 if fy==0 then
 fy=y
 end
+if not cell[fx][fy] then
+return 0
+end
 return cell[fx][fy]
 end
 function Evolve( cell )
@@ -97,7 +100,6 @@ function Evolve( cell )
 			else
 			newcell[x][y]=0
 			end
-			
 		end
 	end
     return newcell
