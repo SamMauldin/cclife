@@ -149,10 +149,11 @@ end
 print("")
 end
 if paused then
-term.write("Paused")
+term.write("Play")
 else
-term.write("Simulating...")
+term.write("Pause")
 end
+term.setBackgroundColor(colors.black)
 end
 function handleclick(p1,p2)
 if c[p1] then
