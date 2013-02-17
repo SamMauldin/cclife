@@ -42,7 +42,6 @@ end
 if update then
 update=false
 end
-log={}
 function Evolve( cell )
 	local newcell={}
 	local width=#cell
@@ -50,7 +49,7 @@ function Evolve( cell )
 	for x,xv in pairs(cell) do
 		newcell[x]={}
 		for y,yv in pairs(xv) do
-			table.append(log, {x,y})
+			print("X:"..x.." Y:"..y)
 			local s=0
 			--Get surrounding
 			--x+1
