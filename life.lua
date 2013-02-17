@@ -66,6 +66,7 @@ end
 if fy==0 then
 fy=y
 end
+print("X:"..fx.." Y:"..fy)
 if not cell[fx][fy] then
 return 0
 end
