@@ -42,6 +42,32 @@ end
 if update then
 update=false
 end
+function getStat(cell, x, y)
+w,h=term.getSize()
+h=h-1
+
+fx, fy=0
+
+if x==0 then
+fx==w
+end
+if y==0 then
+fy=h
+end
+if y==h then
+fy=1
+end
+if x==w then
+fx=1
+end
+if fx==0 then
+fx=x
+end
+if fy==0 then
+fy=y
+end
+return cell[fx][fy]
+end
 function Evolve( cell )
 	local newcell={}
 	local width=#cell
@@ -49,39 +75,29 @@ function Evolve( cell )
 	for x,xv in pairs(cell) do
 		newcell[x]={}
 		for y,yv in pairs(xv) do
-			print("X:"..x.." Y:"..y)
+			--Get surrouding
 			local s=0
-			--Get surrounding
-			--x+1
-			if x==width then
-			s=s+cell[1][y]
-			else
-			s=s+cell[x+1][y]
-			end
-			--x-1
-			if x==1 then
-			s=s+cell[width][y]
-			else
-			s=s+cell[x-1][y]
-			end
-			--y+1
-			if y==height then
-			s=s+cell[x][1]
-			else
-			s=s+cell[x][y+1]
-			end
-			--y-1
-			if y==1 then
-			s=s+cell[x][height]
-			else
-			s=s+cell[x][y-1]
-			end
-			--Decide its fate...
-			if s==3 or s==2 then
+			local cs=getStat(cell,x,y)
+			--Top 3
+			s=s+getStat(cell, x-1, y+1)
+			s=s+getStat(cell, x, y+1)
+			s=s+getStat(cell, x+1, y+1)
+			--Middle 2
+			s=s+getStat(cell, x-1, y)
+			s=s+getStat(cell, x+1, y)
+			--Bottom 3
+			s=s+getStat(cell, x-1, y-1)
+			s=s+getStat(cell, x, y-1)
+			s=s+getStat(cell, x+1, y-1)
+			--Deciding
+			if s==3 then
 			newcell[x][y]=1
-			elseif s==4 or s==0 then
+			elseif s==2 and cs==1 then
+			newcell[x][y]=1
+			else
 			newcell[x][y]=0
 			end
+			
 		end
 	end
     return newcell
