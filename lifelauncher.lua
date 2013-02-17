@@ -1,14 +1,14 @@
 print("Downloading latest version from github...")
-local fh=http.get("https://raw.github.com/Sxw1212/cclife/master/life.lua")
+fh=http.get("https://raw.github.com/Sxw1212/cclife/master/life.lua")
 if fh then
-local code=fh.readAll()
+code=fh.readAll()
 fh.close()
 print("Launching...")
 for k,v in pairs(rs.getSides()) do
 if peripheral.getType(v)=="monitor" then
 print("Monitor found...")
-local monitor=true
-local monitorc=v
+monitor=true
+monitorc=v
 end
 end
 if monitor then
@@ -19,15 +19,15 @@ write("yes/no[yes]:")
 local ans=read()
 if ans=="yes" or ans=="" then
 print("Monitor enabled!")
-mon=peripherial.wrap(monitorc)
+mon=peripheral.wrap(monitorc)
 term.redirect(mon)
-pcall(loadstring,code)
+pcall(loadstring(code))
 term.restore()
 else
-loadstring(code)
+pcall(loadstring(code))
 end
 else
-loadstring(code)
+pcall(loadstring(code))
 end
 print("Exited")
 else
