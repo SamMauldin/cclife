@@ -1,3 +1,4 @@
+debug=true
 args={...}
 monitor=false
 monitorc=""
@@ -42,33 +43,44 @@ end
 if update then
 update=false
 end
+function log(msg)
+if debug then
+print(msg)
+end
+end
 function getStat(cell, x, y)
 w,h=term.getSize()
 h=h-1
 
 fx=0
 fy=0
-
+log("Starting:X:"..x.." Y:"..y)
 if x<1 then
+log("x is less than 1")
 fx=w
 end
 if y<1 then
+log("y is less than 1")
 fy=h
 end
 if y>h then
+log("y is greater than h")
 fy=1
 end
 if x>w then
+log("x is greater than w")
 fx=1
 end
 if fx==0 then
+log("fx is 0")
 fx=x
 end
 if fy==0 then
+log("fy is 0")
 fy=y
 end
-print("W:"..w.." H:"..h)
-print("X:"..fx.." Y:"..fy)
+log("W:"..w.." H:"..h)
+log("X:"..fx.." Y:"..fy)
 if not cell[fx][fy] then
 return 0
 end
