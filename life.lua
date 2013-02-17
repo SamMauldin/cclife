@@ -65,7 +65,7 @@ function Evolve( cell )
 			s=s+cell[x-1][y]
 			end
 			--y+1
-			if x==height then
+			if y==height then
 			s=s+cell[x][1]
 			else
 			s=s+cell[x][y+1]
