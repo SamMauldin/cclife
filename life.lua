@@ -169,7 +169,7 @@ end
 paused=not paused
 end
 paused=true
-interval=0.5
+interval=0.25
 os.startTimer(interval)
 while true do
 e,p1,p2,p3,p4,p5=os.pullEvent()
