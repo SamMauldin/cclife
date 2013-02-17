@@ -49,7 +49,7 @@ h=h-1
 fx, fy=0
 
 if x==0 then
-fx==w
+fx=w
 end
 if y==0 then
 fy=h
