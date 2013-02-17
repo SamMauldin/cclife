@@ -84,7 +84,7 @@ function Evolve( cell )
 			end
 		end
 	end
-    return cell
+    return newcell
 end
 
 function clear()
