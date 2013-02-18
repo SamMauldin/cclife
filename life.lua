@@ -107,14 +107,14 @@ paintutils.drawPixel(ck,k, colors.blue)
 else
 paintutils.drawPixel(ck,k, colors.lime)
 end
-term.setBackgroundColor(colors.gray)
+term.setBackgroundColor(colors.orange)
 end
 print("")
 end
 if paused then
 term.write("Play")
 else
-term.write("Pause")
+term.write("Stop")
 end
 term.setBackgroundColor(colors.black)
 end
@@ -129,7 +129,9 @@ end
 return
 end
 end
+if p1<5 then
 paused=not paused
+end
 end
 paused=true
 interval=0.25
