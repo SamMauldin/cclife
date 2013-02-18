@@ -26,7 +26,7 @@ stop=true
 end
 end
 else
-print("File not found, will be created on save.")
+print("The file "..file.." not found, will be created on save.")
 sleep(1)
 
 end
