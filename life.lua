@@ -1,12 +1,9 @@
 debug=false
 args={...}
 stop=false
-function round(n)
-if n>=0.5 then
-return 1
-else
-return 0
-end
+function round(num, idp)
+  local mult = 10^(idp or 0)
+  return math.floor(num * mult + 0.5) / mult
 end
 function log(msg)
 if debug then
@@ -127,7 +124,7 @@ end
 x,y=term.getSize()
 paintutils.drawLine(5,y,x,y,colors.blue)
 term.setCursorPos(x-2,y)
-term.setBackgroundColor(colors.orange)
+term.setBackgroundColor(colors.lime)
 term.write("R")
 term.setBackgroundColor(colors.gray)
 term.write("C")
