@@ -1,5 +1,5 @@
 local c=nil
-debug=false
+debug=true
 args={...}
 stop=false
 file=nil
@@ -210,6 +210,7 @@ end
 end
 elseif p1==x-3 and p2==y then
 if not file==nil then
+log("Saving to "..file)
 fs.delete(file)
 x=fs.open(file,"w")
 local nc={}
@@ -218,6 +219,7 @@ table.insert(nc, textutils.serialize(v))
 end
 x.write(textutils.serialize(nc))
 x.close()
+log("Saved")
 end
 end
 end
