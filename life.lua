@@ -66,11 +66,11 @@ function Evolve( cell )
 			s=s+getStat(cell, x+1, y-1)
 			--Deciding
 			if s==3 then
-			newcell[x][y]=1
-			elseif s==2 and cs==1 then
 			if cs==0 then
 			paintutils.drawPixel(x,y, colors.lime)
 			end
+			newcell[x][y]=1
+			elseif s==2 and cs==1 then
 			newcell[x][y]=1
 			else
 			if cs==1 then
