@@ -27,6 +27,7 @@ end
 end
 else
 print("The file "..args[1].." not found, will be created on save.")
+file=args[1]
 sleep(1)
 end
 elseif #args==0 then
