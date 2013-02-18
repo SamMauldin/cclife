@@ -171,7 +171,6 @@ end
 end
 end
 end
-end
 paused=true
 interval=0.25
 sleep(1)
