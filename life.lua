@@ -1,6 +1,6 @@
 debug=false
 args={...}
-
+stop=false
 function log(msg)
 if debug then
 print(msg)
@@ -89,6 +89,7 @@ term.setCursorPos(1,1)
 end
 clear()
 print "Welcome to Sxw's Game of Life!"
+sleep(1)
 x,y=term.getSize()
 
 c={}
@@ -118,6 +119,9 @@ term.write("Stop")
 end
 x,y=term.getSize()
 paintutils.drawLine(5,y,x,y,colors.blue)
+term.setCursorPos(x,y-1)
+term.setBackgroundColor(colors.red)
+term.write("X")
 end
 function handleclick(p1,p2)
 if c[p1] then
@@ -130,8 +134,11 @@ end
 return
 end
 end
+x,y=term.getSize()
 if p1<5 then
 paused=not paused
+elseif p1==y then
+stop=true
 end
 end
 paused=true
@@ -139,7 +146,7 @@ interval=0.25
 sleep(1)
 os.startTimer(interval)
 draw()
-while true do
+while not stop do
 e,p1,p2,p3,p4,p5=os.pullEvent()
 if e=="timer" then
 os.startTimer(interval)
