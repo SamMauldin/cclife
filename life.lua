@@ -119,7 +119,7 @@ term.write("Stop")
 end
 x,y=term.getSize()
 paintutils.drawLine(5,y,x,y,colors.blue)
-term.setCursorPos(x,y-1)
+term.setCursorPos(x,y)
 term.setBackgroundColor(colors.red)
 term.write("X")
 end
