@@ -223,6 +223,7 @@ x.close()
 log("Saved")
 else
 log("Save routine could not find save file to save to")
+log("File is type:"..type(file))
 end
 log("Save routine ended")
 if debug then
