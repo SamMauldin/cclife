@@ -116,7 +116,7 @@ term.write("Play")
 else
 term.write("Stop")
 end
-term.setBackgroundColor(colors.black)
+term.setBackgroundColor(colors.lime)
 end
 function handleclick(p1,p2)
 if c[p1] then
