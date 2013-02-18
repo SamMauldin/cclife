@@ -1,6 +1,9 @@
 debug=false
 args={...}
 stop=false
+function round(n)
+if n=>0.5 then return 1 else return 0 end
+end
 function log(msg)
 if debug then
 print(msg)
@@ -119,11 +122,14 @@ term.write("Stop")
 end
 x,y=term.getSize()
 paintutils.drawLine(5,y,x,y,colors.blue)
-term.setCursorPos(x-1,y)
+term.setCursorPos(x-2,y)
+term.setBackgroundColor(colors.orange)
+term.write("R")
 term.setBackgroundColor(colors.gray)
 term.write("C")
 term.setBackgroundColor(colors.red)
 term.write("X")
+term.setBackgroundColor(colors.blue)
 end
 function handleclick(p1,p2)
 if c[p1] then
@@ -148,6 +154,16 @@ for i=1,x do
 c[i]={}
 for j=1, y-1 do
 c[i][j]=0
+end
+end
+elseif p1==x-2 and p2==y then
+x,y=term.getSize()
+c={}
+for i=1,x do
+c[i]={}
+for j=1, y-1 do
+c[i][j]=round(Math.random())
+end
 end
 end
 end
