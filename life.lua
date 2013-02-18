@@ -1,6 +1,42 @@
+local c=nil
 debug=false
 args={...}
 stop=false
+file=nil
+lifec=nil
+if #args==1 then
+if fs.exists(args[1]) then
+print("Loading lifefile...")
+file=args[1]
+x=fs.open(file, "r")
+if x then
+lifec=x.readAll()
+x.close()
+local xc=textutils.unserialize(lifec)
+local nlc={}
+if xc then
+for k,v in pairs(xc) do
+nlc[k]=textutils.unserialize(v)
+end
+c=nlc
+else
+print("Error reading file")
+sleep(1)
+stop=true
+end
+end
+else
+print("File not found!")
+sleep(1)
+stop=true
+end
+elseif #args==0 then
+--Eventually prompt
+else
+print("Usage: life [file]")
+sleep(1)
+stop=true
+end
 
 function round(num, idp)
   local mult = 10^(idp or 0)
@@ -96,12 +132,13 @@ clear()
 print "Welcome to Sxw's Game of Life!"
 sleep(1)
 x,y=term.getSize()
-
+if not c then
 c={}
 for i=1,x do
 c[i]={}
 for j=1, y-1 do
 c[i][j]=0
+end
 end
 end
 function draw(mon)
@@ -124,7 +161,9 @@ term.write("Stop")
 end
 x,y=term.getSize()
 paintutils.drawLine(5,y,x,y,colors.blue)
-term.setCursorPos(x-2,y)
+term.setCursorPos(x-3,y)
+term.setBackgroundColor(colors.yellow)
+term.write("S")
 term.setBackgroundColor(colors.lime)
 term.write("R")
 term.setBackgroundColor(colors.gray)
@@ -166,6 +205,17 @@ c[i]={}
 for j=1, y-1 do
 c[i][j]=round(math.random())
 end
+end
+elseif p1==x-3 and p2==y then
+if not file==nil then
+fs.delete(file)
+x=fs.open(file,"w")
+local nc={}
+for k,v in pairs(c) do
+table.insert(nc, textutils.serialize(v))
+end
+x.write(textutils.serialize(nc))
+x.close()
 end
 end
 end
