@@ -119,7 +119,9 @@ term.write("Stop")
 end
 x,y=term.getSize()
 paintutils.drawLine(5,y,x,y,colors.blue)
-term.setCursorPos(x,y)
+term.setCursorPos(x-1,y)
+term.setBackgroundColor(colors.gray)
+term.write("C")
 term.setBackgroundColor(colors.red)
 term.write("X")
 end
@@ -139,6 +141,15 @@ if p1<5 then
 paused=not paused
 elseif p1==x and p2==y then
 stop=true
+elseif p1==x-1 and p2==y then
+x,y=term.getSize()
+c={}
+for i=1,x do
+c[i]={}
+for j=1, y-1 do
+c[i][j]=0
+end
+end
 end
 end
 paused=true
