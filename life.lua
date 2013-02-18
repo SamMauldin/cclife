@@ -221,6 +221,8 @@ end
 x.write(textutils.serialize(nc))
 x.close()
 log("Saved")
+else
+log("Save routine could not find save file to save to")
 end
 log("Save routine ended")
 if debug then
