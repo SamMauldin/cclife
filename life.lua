@@ -1,6 +1,7 @@
 debug=false
 args={...}
 stop=false
+
 function round(num, idp)
   local mult = 10^(idp or 0)
   return math.floor(num * mult + 0.5) / mult
@@ -163,7 +164,7 @@ c={}
 for i=1,x do
 c[i]={}
 for j=1, y-1 do
-c[i][j]=round(Math.random())
+c[i][j]=round(math.random())
 end
 end
 end
