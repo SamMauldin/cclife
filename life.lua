@@ -167,3 +167,6 @@ paused=not paused
 draw()
 end
 end
+term.setBackgroundColor(colors.black)
+term.clear()
+term.setCursorPos(1,1)
