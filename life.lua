@@ -209,6 +209,7 @@ c[i][j]=round(math.random())
 end
 end
 elseif p1==x-3 and p2==y then
+log("Save routine started")
 if not file==nil then
 log("Saving to "..file)
 fs.delete(file)
@@ -220,6 +221,10 @@ end
 x.write(textutils.serialize(nc))
 x.close()
 log("Saved")
+end
+log("Save routine ended")
+if debug then
+sleep(1)
 end
 end
 end
