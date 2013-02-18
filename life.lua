@@ -224,7 +224,7 @@ log("Saved")
 end
 log("Save routine ended")
 if debug then
-sleep(1)
+sleep(5)
 end
 end
 end
