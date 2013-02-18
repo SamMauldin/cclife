@@ -28,9 +28,10 @@ end
 else
 print("The file "..file.." not found, will be created on save.")
 sleep(1)
-
 end
 elseif #args==0 then
+print("Not saving to file")
+sleep(1)
 --Eventually prompt
 else
 print("Usage: life [file]")
