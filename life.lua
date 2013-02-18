@@ -26,9 +26,9 @@ stop=true
 end
 end
 else
-print("File not found!")
+print("File not found, will be created on save.")
 sleep(1)
-stop=true
+
 end
 elseif #args==0 then
 --Eventually prompt
