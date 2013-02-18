@@ -1,5 +1,5 @@
 local c=nil
-debug=true
+debug=false
 args={...}
 stop=false
 file=nil
@@ -210,7 +210,7 @@ end
 end
 elseif p1==x-3 and p2==y then
 log("Save routine started")
-if not file==nil then
+if type(file)=="string" then
 log("Saving to "..file)
 fs.delete(file)
 x=fs.open(file,"w")
