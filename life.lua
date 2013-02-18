@@ -137,7 +137,7 @@ end
 x,y=term.getSize()
 if p1<5 then
 paused=not paused
-elseif p1==y then
+elseif p1==x and p2==y then
 stop=true
 end
 end
