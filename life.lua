@@ -68,8 +68,14 @@ function Evolve( cell )
 			if s==3 then
 			newcell[x][y]=1
 			elseif s==2 and cs==1 then
+			if cs==0 then
+			paintutils.drawPixel(x,y, colors.blue)
+			end
 			newcell[x][y]=1
 			else
+			if cs==1 then
+			paintutils.drawPixel(x,y, colors.lime)
+			end
 			newcell[x][y]=0
 			end
 		end
@@ -127,14 +133,15 @@ paused=not paused
 end
 paused=true
 interval=0.25
+sleep(1)
 os.startTimer(interval)
+draw()
 while true do
 e,p1,p2,p3,p4,p5=os.pullEvent()
 if e=="timer" then
 os.startTimer(interval)
 if not paused then
 c=Evolve(c)
-draw()
 end
 elseif e=="mouse_click" then
 handleclick(p2,p3)
