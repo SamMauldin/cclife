@@ -116,7 +116,8 @@ term.write("Play")
 else
 term.write("Stop")
 end
-term.setBackgroundColor(colors.blue)
+x,y=term.getSize()
+paintutils.drawLine(5,y,x,y,colors.blue)
 end
 function handleclick(p1,p2)
 if c[p1] then
