@@ -2,7 +2,11 @@ debug=false
 args={...}
 stop=false
 function round(n)
-if n=>0.5 then return 1 else return 0 end
+if n>=0.5 then
+return 1
+else
+return 0
+end
 end
 function log(msg)
 if debug then
