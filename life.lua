@@ -26,7 +26,7 @@ stop=true
 end
 end
 else
-print("The file "..file.." not found, will be created on save.")
+print("The file "..args[1].." not found, will be created on save.")
 sleep(1)
 end
 elseif #args==0 then
