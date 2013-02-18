@@ -69,12 +69,12 @@ function Evolve( cell )
 			newcell[x][y]=1
 			elseif s==2 and cs==1 then
 			if cs==0 then
-			paintutils.drawPixel(x,y, colors.blue)
+			paintutils.drawPixel(x,y, colors.lime)
 			end
 			newcell[x][y]=1
 			else
 			if cs==1 then
-			paintutils.drawPixel(x,y, colors.lime)
+			paintutils.drawPixel(x,y, colors.blue)
 			end
 			newcell[x][y]=0
 			end
